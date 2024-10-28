@@ -2,7 +2,9 @@ from __future__ import absolute_import
 from __future__ import division
 
 import warnings
-import tensorflow as tf
+
+from tensorflow import keras
+import tensorflow as tf 
 from keras import backend as K
 from keras import activations
 from keras import initializers
@@ -295,7 +297,7 @@ class CRF(Layer):
 
         self.uses_learning_phase = True
         if self.learn_mode == 'join':
-            train_output = K.zeros_like(K.dot(X, self.kernel))
+            train_output = K.zeros_like(K.(X, self.kernel))
             out = K.in_train_phase(train_output, test_output)
         else:
             if self.test_mode == 'viterbi':
