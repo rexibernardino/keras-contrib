@@ -420,7 +420,7 @@ class CRF(Layer):
         """
         input_energy = K.sum(input_energy * y_true, 2)  # (B, T)
         # (B, T-1)
-        chain_energy = K.sum(K.dot(y_true[:, :-1, :],
+        chain_energy = K.sum(tf.matmul(y_true[:, :-1, :],
                                    self.chain_kernel) * y_true[:, 1:, :], 2)
 
         if mask is not None:
