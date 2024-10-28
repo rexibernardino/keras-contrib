@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 
 import warnings
-
+import tensorflow as tf
 from keras import backend as K
 from keras import activations
 from keras import initializers
@@ -556,7 +556,7 @@ class CRF(Layer):
         return self.softmaxNd(margin)
 
     def viterbi_decoding(self, X, mask=None):
-        input_energy = self.activation(K.dot(X, self.kernel) + self.bias)
+        input_energy = self.activation(tf.matmul(X, self.kernel) + self.bias)
         if self.use_boundary:
             input_energy = self.add_boundary_energy(
                 input_energy, mask, self.left_boundary, self.right_boundary)
